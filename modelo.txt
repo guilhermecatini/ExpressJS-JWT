@@ -4,138 +4,445 @@
 - MONGOOSE
 - JSONWEBTOKEN
 
+# Segurança de Rotas utilizando JsonWebToken (JWT)
 
 
 
+## TOMO I 
 
-# Trabalho confecção de Artigos de Revisão
+Para explicar de forma simples e lúdica irei utilizar como massa de dados o retorno de uma 
+requisição na [API do Redtube](http://api.redtube.com/) onde teremos, como exemplo, esse objeto:
 
-## Introdução
-O desenvolvimento web cresceu assustadoramente nos últimos anos. A formatação do visual do site que no início era feito em HTML puro, com o surgimento do CSS tornou-se mais prático e eficiente. Como tudo evolui, com o CSS não foi diferente. Atualmente a versão mais atual dele é o CSS3. Entretando várias outras tecnologias surgiram e vem surgindo para auxiliar o processo de criação de websites, o Atomic Design é uma dessas inovações. Atomic Design é uma metodologia para construção de componentes visuais para sistemas web. A partir destas duas tecnologias é que se dará o este trabalho.
-
-</br></br>
-## Tarefas
-Inicialmente vale lembrar que um Artigo de Revisão, não é um artigo científico. Um artigo de revisão, também conhecido como Review, é uma publicação que descreve, analisa ou discute conhecimentos científicos ou tecnológicos já publicados. O artigo de revisão de CSS3 terá o formado de um HowTo, ou seja, não será necessário apresentar referenciação bilbiofráfica nos parágrafos de conceitos e sim constar a referência ao final de cada funcionalidade. Por sua vez o artigo de revisão de Atomic Design terá um formato de artigo de revisão resumido.
-
-1) Cada aluno deverá confeccionar 2 artigos de revisão, um sobre CSS3 e outro sobre Atomic Design;</br>
-2) Postar esses artigos no GitHub como Gitpages em formato MD;
-  - Artigo de CSS3 deverá ter o nome: artigo-css3.md
-  - Artigo de Atomic deverá ter o nome: artigo-atomic-design.md</br>
-
-3) Enviar email para o professor com:
-  - Titulo do email: <b>[WebMob Unoesc Chapecó] Artigos</b>
-  - Corpo do email: colar as urls do github onde está publicado cada um dos seus artigos</br>
-
-4) O prazo final para envio do email com as urls dos artigos é o 22/10/2015 até as 23:59h
-
-#### Tarefa do artigo de CSS3
-Seu artigo de revisão deverá abordar 10 funcionalidades de CSS3 que mais usa, que pesquisou, ou que achou interessante. Sobre cada uma dessas 10 funcionalidades, deverá apresentar o seguinte:
-- Nome da funcionalidade;
-- O que é ou o que faz a funcionalidade;
-- Onde usar essa funcionalidade, em que contexto deve usar ela;
-- Como usar essa funcionalidade, ou seja, sua sintaxe de utilização;
-- Apresentar um exemplo de uso dessa funcionalidade.
-- Referência de onde extraiu o conteúdo apresentado.
-
-</br>
-#### Tarefa do artigo de Atomic Design
-O artigo de revisão de Atomic Design deverá ser constituído das seguintes partes:
-- Resumo 
-- 1) O que é ?
-- 2) Como funciona 
-- 3) Por que usá-lo, quais seus benefícios 
-- 4) Onde usá-lo (10%)
-- 5) Exemplos em cada etapa (Apresentar um exemplo de cada etapa)
-- Referências
-
-</br></br>
-## Processo
-1) Confeccione no Github em MD, seu artigo de revisão sobre o CSS3 conforme solicitado na Tarefa;</br>
-1.1) Salve seu artigo de CSS3 com o nome: <b>artigo-css3.md</b> </br>
-2) Confeccione seu artigo de revisão sobre o Atomic Design conforme solicitado na Tarefa;</br>
-2.1) Salve seu artigo de Atomic Design com o nome: <b>artigo-atomic-design.md</b> </br>
-3) Envie email para (<b>jnascimento@gmail.com</b>) com as urls de ambos seus artigos. Mas cuidado, o titulo do email deve ser: <b>[WebMob Unoesc Chapecó] Artigos</b></br>
-4) Para auxiliá-lo na formatação de suas GitPages, consulte: [https://help.github.com/articles/writing-on-github/](https://help.github.com/articles/writing-on-github/),  [https://help.github.com/articles/markdown-basics/](https://help.github.com/articles/markdown-basics/) e [https://help.github.com/articles/github-flavored-markdown/](https://help.github.com/articles/github-flavored-markdown/). Ali encontrará as principais tags para formatação de GitPages em formato MD.
-
-</br></br>
-## Avaliação
-Cada um dos artigos terá peso 10, contudo cada artigo é avaliado de forma diferente. Veja:
-
-#### Artigo de CSS3
-No artigo de CSS3 o acadêmico(a) deverá apresentar até 10 funcionalidades, sendo que cada funcionalidade apresentada porderá valer até 1 ponto. Ao final será somado a avaliação de todas as funcionalidades e obtida a nota. Cada funcionalidade será avaliada assim:
-- O que é? (20%)
-- Onde usar: (10%)
-- Como usar: (20%)
-- Exemplo de uso: (50%)
-
-</br>
-#### Artigo de Atomic Design
-No artigo de Atomic Design a nota será proferida da seguinte forma:
-- Resumo (5%)
-- O que é? (15%)
-- Como funciona? (10%)
-- Para que usar (10%)
-- Onde usar? (10%)
-- Exemplo de cada etapa. (10%. Como são 5 etapas, 5*10%=50%)
-
-</br></br></br></br>
-### Exemplo Artigo de CSS3
------- INICIO do artigo ------ 
-#### Unoesc Chapecó
-#### Pós-graduação em Desenvolvimento Web, Cloud e dispositivos móveis - WebMob
-#### Disciplina: HTML5+CSS3
-#### Professor: Jean Carlo Nascimento
-#### Acadêmico(a): Bla Bla Bla Bla
-### Artigo de revisão de CSS3
-##### Funcionalidade: border-radius
-##### O que é?
-A propriedade CSS3 border-radius destina-se a definir bordas arredondadas. O arredondamento das bordas é feito com declaração de dois valores CSS de medida; o primeiro define o eixo horizontal (rx) de 1/4 de uma elipse e o segundo o eixo vertical (ry). O quarto de elipse assim definida é convenientemente inserida no canto vivo do box arredondando-o. O diagrama a seguir esclarece o esquema de arredondamento.
-##### Onde usar:
-Em qualquer elemento que possui o atributo border.
-##### Como usar:
-```css
-seletor {border-radius:
-[ <length> | <percentage> ]{1,4} [ / [ <length> | <percentage> ]{1,4} ]?);
-}
+```js
+{
+    "video": {
+        "duration": "14:08",
+        "views": "43110",
+        "video_id": "1103943",
+        "rating": "3.86",
+        "ratings": "236",
+        "title": "Loira dando o bucet&atilde;o e o c&uacute; de quatro",
+        "url": "http://www.redtube.com/1103943",
+        "embed_url": "https://embed.redtube.com/?id=1103943",
+        "default_thumb": "https://thumbs-cdn.redtube.com/m=e0YH8f/_thumbs/0001103/1103943/1103943_004o.jpg",
+        "thumb": "https://thumbs-cdn.redtube.com/m=e0YH8f/_thumbs/0001103/1103943/1103943_004o.jpg",
+        "publish_date": "2017-02-11 13:30:01",
+        "tags": [
+          {
+            "tag_name": "Amateur"
+          },
+          {
+            "tag_name": "Anal Sex"
+          },
+          {
+            "tag_name": "Big Ass"
+          },
+          {
+            "tag_name": "Brazilian"
+          },
+          {
+            "tag_name": "Couple"
+          },
+          {
+            "tag_name": "Homemade"
+          },
+          {
+            "tag_name": "Latin"
+          },
+          {
+            "tag_name": "POV"
+          },
+          {
+            "tag_name": "Shaved"
+          },
+          {
+            "tag_name": "Vaginal Sex"
+          }
+        ]
+      }
+  }
+  
 ```
-##### Exemplo de uso
-A sintaxe geral para aplicar borda arredondada é mostrada a seguir.
 
-```css
-seletor {
-  border-top-left-radius: rx ry;
-  border-top-right-radius: rx ry;
-  border-bottom-right-radius: rx ry;
-  border-bottom-left-radius: rx ry;
+
+
+Ao final desse conteúdo vc deverá estar apto a resolver o seguinte problema:
+
+
+>Liste quais vídeos possuem duração entre 2 e 5 minutos, que possui pelo menos 100 `views` com 
+>uma média de avaliação maior que 2 e sua publicação foi na última semana.
+
+Para resolver essa pendenga precisaremos basicamente de 3 funções:
+
+- map
+- filter
+- reduce
+
+
+### filter
+
+- filtrar
+  + por `duration`
+    * menor que
+    * maior que
+    * entre dois valores
+
+
+> Irei ensinar como filtrar por `duration` e o resto dos outros filtros vc terá que fazer!
+
+Então vamos começar pelo `menor que`, ou seja, pela duração máxima:
+
+```js
+
+const filterByMaxDuration = ( videos, max ) => {
+
+  const byMaxDuration = ( obj ) => obj.video.duration.split(':')[0] <= max
+
+  return  videos.filter( byMaxDuration )
+
 }
 
+console.log('filterByMaxDuration', filterByMaxDuration(videos, 2) )
 ```
-### Referencia:
-[http://www.maujor.com/tutorial/interativo-css3/inc/borderradius.php](http://www.maujor.com/tutorial/interativo-css3/inc/borderradius.php)
 
-<repetir para as demais funcionalidades>
+Obviamente vc percebeu que ele testa apenas os minutos, para transformar todas as durações em 
+segundos teremos que usar o `map` e isso é um pouco mais para frente.
 
------- FIM do artigo ------
-</br></br></br></br>
-## Exemplo Artigo de Atomic Design
------- INICIO do artigo ------ 
-## Atomic Design
-Jean Carlos Hennrichs (Unoesc Chapecó)</br>
-{jean.hennrichs@unoesc.edu.br}
-#####Resumo:
-Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla. 
-#####1) O que é?
-Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla. 
-#####2) Como funciona
-Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla. 
-#####3) Para que usar
-Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla. 
-#####4) Onde usar?
-Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla. 
-#####5) Exemplos:
-Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla. 
-#####6) Referências
-[http://tableless.com.br/o-que-e-design-atomic/](http://tableless.com.br/o-que-e-design-atomic/)</br>
-[http://pt.slideshare.net/bradfrostweb/atomic-design](http://pt.slideshare.net/bradfrostweb/atomic-design)
+Na função `filterByMaxDuration` pegamos o valor da duração com `obj.video.duration` para depois 
+executarmos o `.split(':')` para separar os minutos dos segundos e com `[0]` pegamos apenas o 
+valor dos minutos. 
 
------- FIM do artigo ------
+Logo ela só irá retornar videos com duração, dos minutos, menor ou igual ao valo passado para 
+`filterByMaxDuration`.
+
+Agora ficou fácil fazer as outras funções:
+
+```js
+const filterByMaxDuration = ( videos, max ) => {
+
+  const byMaxDuration = ( obj ) => obj.video.duration.split(':')[0] <= max
+
+  return  videos.filter( byMaxDuration )
+
+}
+
+const filterByMinDuration = ( videos, min ) => {
+
+  const byMinDuration = ( obj ) => obj.video.duration.split(':')[0] >= min
+
+  return  videos.filter( byMinDuration )
+
+}
+
+const filterByRangeDuration = ( videos, min, max ) => {
+
+  const byRangeDuration = ( obj ) =>  obj.video.duration.split(':')[0] >= min
+                                                      && obj.video.duration.split(':')[0] <= max
+
+  return  videos.filter( byRangeDuration )
+
+}
+
+```
+
+
+Para melhorar isso podemos criar uma função de mediação para termos apenas 1 função de filtragem 
+pela duração, por exemplo:
+
+```js
+
+const filterDurationBy = ( videos, type, initial=0, end=0) => {
+
+  switch ( type ) {
+    case 'range':
+      return filterByRangeDuration( videos, initial, end )
+      break;
+    case 'max':
+      return filterByMaxDuration( videos, initial )
+      break;
+    case 'min':
+      return filterByMinDuration( videos, initial ) 
+      break;
+    default:
+      return console.log('Essa opção não existe!')
+      break;
+  }
+}
+console.log('\n\n\n filterDurationBy', filterDurationBy(videos, 'min', 40) )
+console.log('\n\n\n filterDurationBy', filterDurationBy(videos, 'max', 2) )
+console.log('\n\n\n filterDurationBy', filterDurationBy(videos, 'range', 40, 50) )
+
+```
+
+Deixando nosso módulo final e refatorado assim:
+
+```js
+
+const filterDurationBy = ( videos, type, initial=0, end=0) => {
+
+  const byMaxDuration = ( obj ) => obj.video.duration <= initial
+  const byMinDuration = ( obj ) => obj.video.duration >= initial
+  const byRangeDuration = ( obj ) =>  obj.video.duration >= initial
+                                                        && obj.video.duration <= end
+
+
+  const filterDurationByMax = ( videos, max ) => videos.filter( byMaxDuration )
+  const filterDurationByMin = ( videos, min ) => videos.filter( byMinDuration )
+  const filterDurationByRange = ( videos, min, max ) => videos.filter( byRangeDuration )
+
+  switch ( type ) {
+    case 'range':
+      return filterDurationByRange( videos, initial, end )
+      break;
+    case 'max':
+      return filterDurationByMax( videos, initial )
+      break;
+    case 'min':
+      return filterDurationByMin( videos, initial ) 
+      break;
+    default:
+      return console.log('Essa opção não existe!')
+      break;
+  }
+}
+
+```
+
+Percebeu que eu separei as funções de filtragem para ficar mais legível e de fácil manutenção?
+
+
+**Entretanto ainda podemos melhorar atomizando cada função de `filter` assim:**
+
+
+```js
+
+const filterDurationBy = ( initial=0 ) => ( obj ) =>  obj.video.duration <= initial
+
+module.exports = filterDurationBy
+
+```
+
+```js
+
+const filterDurationBy = ( initial=0 ) => ( obj ) =>  obj.video.duration >= initial
+
+module.exports = filterDurationBy
+
+```
+
+```js
+
+const filterDurationBy = ( initial=0, end=0 ) => ( obj ) =>  obj.video.duration >= initial
+                                                                                      && obj.video.duration <= end
+
+module.exports = filterDurationBy
+
+```
+
+
+**Para que possamos utiliza-las da seguinte forma:**
+
+```js
+const filterByDuration = ( videos, type, initial=0, end=0) => {
+
+  const byMaxDuration = require('./actions/filterDurationByMax')(initial)
+  const byMinDuration = require('./actions/filterDurationByMin')(initial)
+  const byRangeDuration = require('./actions/filterDurationByRange')(initial, end)
+
+
+  const filterByMaxDuration = ( videos, max ) => videos.filter( byMaxDuration )
+  const filterByMinDuration = ( videos, min ) => videos.filter( byMinDuration )
+  const filterByRangeDuration = ( videos, min, max ) => videos.filter( byRangeDuration )
+
+  switch ( type ) {
+    case 'range':
+      return filterByRangeDuration( videos, initial, end )
+      break;
+    case 'max':
+      return filterByMaxDuration( videos, initial )
+      break;
+    case 'min':
+      return filterByMinDuration( videos, initial ) 
+      break;
+    default:
+      return console.log('Essa opção não existe!')
+      break;
+  }
+}
+
+module.exports = filterByDuration
+
+```
+
+
+> **Agora é a sua vez de fazer as outras funçōes!**
+
+
+#### Exercícios
+
+```
+
+1) Criar as funções abaixo para filtrar, de forma atômica e modular.
+
+2) Criar 1 exemplo para cada filter
+
+```
+
+
+1)
+- por `views`
+  + menor que
+  + maior que
+  + entre dois valores
+- por `ratings`
+  + menor que
+  + maior que
+  + entre dois valores
+- por `publish_date`
+  + menor que
+  + maior que
+  + entre dois valores
+
+### map
+
+Será com o `map` que conseguiremos modificar os valores já existentes, por exemplo:
+
+- transformar HH:MM:SS em **segundo**
+
+Sabendo que os valores são separados por `:`,  iremos criar uma função que os separa, por exemplo:
+
+```js
+
+const breakDuration = ( obj ) => obj.video.duration.split(':')
+
+```
+
+Com o retorno dessa função já saberemos se a duração possui apenas segundos ou minutos ou horas, 
+apenas verificando o tamanho do *Array* retornado. Agora ficou fácil fazermos essa função, olhe:
+
+```js
+
+const transformToSeconds = ( obj ) => {
+  const time = obj.video.duration.split(':')
+  let seconds = 0
+
+  if ( time.length === 3 ) {
+      seconds += parseInt( time[0] * 3600 )
+      seconds += parseInt( time[1] * 60 )
+      seconds += parseInt( time[2] )
+    }
+  if ( time.length === 2 ) {
+      seconds += parseInt( time[0] * 60 )
+      seconds += parseInt( time[1] )
+    }
+    obj.video.duration = seconds
+    return obj
+}
+
+
+const transformDuration = ( obj ) => obj.map( transformToSeconds )
+
+console.log('\n\n\n transformDuration', transformDuration(videos) )
+
+```
+
+
+Claro que podemos melhora-la! Perceba aqueles `ifs`, o segundo `if` não é necessário pois mesmo 
+que a duração possua apenas segundos ela virá **SEMPRE** com 0 nos minutos, logo podemos deixar assim:
+
+```js
+
+const transformToSeconds = ( obj ) => {
+  const time = obj.video.duration.split(':')
+  let seconds = 0
+
+  if ( time.length === 3 ) 
+    seconds += parseInt( time[0] * 3600 )
+    
+  seconds += parseInt( time[0] * 60 )
+  seconds += parseInt( time[1] )
+
+  obj.video.duration = seconds
+  return obj
+}
+
+module.exports = transformToSeconds
+
+```
+
+
+Vamos exportar essa função que usaremos direto no `map`, em conjunto do nosso `filter`, ficando assim:
+
+```js
+
+const {videos} = require('./../jsons/redtube.brazil.json')
+
+const filterDuration = require('./filter.duration.seconds')
+const transformDuration = require('./map.duration')
+
+const myVideos = ( videos, type, min, max ) => 
+  filterDuration( videos.map( transformDuration ), type, min, max )
+
+const type = 'range'
+const min = 30
+const max = 60
+
+console.log('myVideos', myVideos( videos, type, min, max ))
+
+```
+
+
+> **Percebeu que estou usando outro módulo de `filter`?**
+
+
+Salvei como o nosso antigo, retirando apenas o `split` pois nesse módulo ele irá trabalhar diretamente
+com segundos, por isso existiu essa necessidade de modificação.
+
+```js
+
+const byMaxDuration = ( obj ) => obj.video.duration <= initial
+const byMinDuration = ( obj ) => obj.video.duration >= initial
+const byRangeDuration = ( obj ) =>  obj.video.duration >= initial
+                                                        && obj.video.duration <= end
+
+```
+
+Agora veja como iremos utilizar essas funções:
+
+```js
+
+const {videos} = require('./../jsons/redtube.brazil.json')
+
+const filterDurationByRange = require('./actions/filterDurationByRange.js')(30, 60)
+const transformDuration = require('./map.duration')
+
+const myVideos = ( videos ) => videos
+                                                    .map( transformDuration )
+                                                    .filter( filterDurationByRange )
+
+
+console.log('myVideos', myVideos( videos ))
+
+```
+
+
+> **Percebeu algo de diferente?**
+
+
+Então analise esse código: `require('./actions/filterDurationByRange.js')(30, 60)`
+
+Note que modularizei **APENAS** a função `filterDurationByRange` e para conseguir pegar o `min` e `max` 
+precisamos criar um módulo que receba esses valores e depois retorne a função que usaremos.
+
+
+```js
+
+const filterDurationBy = ( initial=0, end=0 ) => ( obj ) =>  obj.video.duration >= initial
+                                                                                      && obj.video.duration <= end
+
+
+module.exports = filterDurationBy
+
+```
+
+Com isso a função que usaremos no `filter` terá acesso aos valores de `min` e `max` pois vc criou uma: [CLOSURE]()
