@@ -161,7 +161,7 @@ module.exports = router
 
 Vamos acertar nosso arquivo `app.js` localizado na raiz do nosso projeto. Primeiro vou abrir uma conexão com o MongoDB utilizando o mongoose, remover as rotas padrão que vieram com a instalação automatica do Express-Generator e por fim adicionar a nossa rota nova. Observe o código abaixo.
 
-```
+```javascript
 // ./app.js
 'use strict'
 
