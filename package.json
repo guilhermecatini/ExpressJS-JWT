@@ -1,5 +1,5 @@
 {
-  "name": "expressjs-jwt",
+  "name": "jwt",
   "version": "0.0.0",
   "private": true,
   "scripts": {
