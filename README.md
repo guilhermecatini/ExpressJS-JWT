@@ -21,6 +21,7 @@ Primeiro vamos iniciar um projeto utilizando o [Express-Generator](http://expres
 
 >**#Windows**
 >`npm i -g nodemon express-generator`
+
 >**#Linux**
 >`$ sudo npm i -g nodemon express-generator`
 
