@@ -1,0 +1,23 @@
+{
+  "name": "jwt",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Guilherme Catini <guilherme@catini.org>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/guilhermecatini/ExpressJS-JWT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.6.2",
+    "angular-route": "^1.6.2",
+    "bootstrap": "^3.3.7"
+  }
+}

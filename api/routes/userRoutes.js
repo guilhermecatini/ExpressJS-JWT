@@ -46,10 +46,10 @@ router.get('/decodeToken/:token', (req, res) => {
 router.use((req, res, next) => {
     const token = req.headers['authorization']
     // caso não receba nenhum token, já retorna o erro e não liberando o acesso as rotas.
-    if (!token) return res.json({ error: true, message: 'Nenhum token recebido.' })
+    if (!token) return res.status(401).json({ error: true, message: 'Nenhum token recebido.' })
 
     jwt.verify(token, supersecret, (err, data) => {
-        if (err) return res.json(err) // caso o token recebido seja invalido, já retorna o erro
+        if (err) return res.status(401).json(err) // caso o token recebido seja invalido, já retorna o erro
         next() // por final, se o token for válido, usa o next() para liberar o acesso as rotas
     })
 
